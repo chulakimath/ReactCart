@@ -1,4 +1,4 @@
-# [Visit for live demo 🌏](https://reactimageslider-fetch.netlify.app/)
+# [Visit for live demo 🌏](https://q-react-cart-demo.netlify.app/)
 ## Concepts
 <ul>
 <li>Asynchronous data </li>
