@@ -20,7 +20,7 @@
 <li>React Icons</li>
 <li>React hot toast</li>
 </ul>
-##features
+## features
 <ul>
 <li>Load more Button to get more product list</li>
 <li>add to cart button</li>
