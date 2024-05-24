@@ -14,7 +14,7 @@ const LoadMoreButton = () => {
             setLoading(true)
             const response = await fetch(`https://dummyjson.com/products?limit=20&skip=${count === 0 ? 0 : count * 20}`);
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             if (data && data.products && data.products.length > 0) {
                 setProducts(prev => [...prev, ...data.products]);
                 setLoading(false)
@@ -61,13 +61,13 @@ const LoadMoreButton = () => {
                 });
                 return prev;
             }
-            toast.success('Item added to Cart!',{duration: 4000,})
+            toast.success('Item added to Cart!', { duration: 4000, })
             return [...prev, obj]
         });
-        setCart(prev => {
-            console.log(prev);
-            return prev
-        })
+        // setCart(prev => {
+        //     console.log(prev);
+        //     return prev
+        // })
     }
 
     return (
@@ -77,14 +77,18 @@ const LoadMoreButton = () => {
                 reverseOrder={false}
             />
             <div className='grid sm:grid-cols-4 gap-3 mx-2 my-2'>
-                <div onClick={() => { setCartShow(prev => !prev) }}
+                <div
                     onMouseLeave={() => { setCartShow(false) }}
-                    className='bg-gray-400/60 px-4 py-4 rounded-full cursor-pointer right-3 top-3 fixed text-black transition-all duration-300'>
+                    className='bg-gray-400/60 px-4 py-4 rounded-full  right-5  top-5 fixed text-black transition-all duration-300'>
+                    {/* <div
+                        hidden={cartshow ? true : false}
+                        className='absolute -top-3 -right-2 text-xl bg-red-400 rounded-full px-2 select-none text-white'>{cart.length}</div> */}
                     <div
                         hidden={cartshow ? true : false}
-                        className='text-xl hover:scale-125'>
+                        className='text-xl hover:scale-125 relative'>
+
                         <span>
-                            <FaCartShopping />
+                            <FaCartShopping className='cursor-pointer' onClick={() => { setCartShow(prev => !prev) }} />
                         </span>
                         {/* <span>
                             {cart.length}
@@ -92,9 +96,9 @@ const LoadMoreButton = () => {
                     </div>
                     <div
                         hidden={cartshow ? false : true}
-                        className='bg-white w-[200px] h-[100px] p-4 rounded-3xl text-center text-xl'>
-                        <div> Items : {cart.length}</div>
-                        <div> total price :  ${cart.reduce((accumulator, item) => accumulator + item.price, 0)}</div>
+                        className='bg-white w-auto h-auto p-4 m-2 rounded-xl text-left text-xl transition-all duration-300'>
+                        <div className='flex gap-4 items-center'> <FaCartShopping color='blue' size={'25px'} /> <div className='-pt-2'> : {cart.length}</div></div>
+                        <div> total : ${cart.reduce((accumulator, item) => accumulator + item.price, 0).toFixed(2)}</div>
                     </div>
                 </div>
                 {products && products.length > 0 ?
